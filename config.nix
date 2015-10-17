@@ -1,8 +1,8 @@
 {
-  packageOverrides = pkgs: rec {
-    workstationEnv = pkgs.buildEnv {
+  packageOverrides = pkgs: with pkgs; rec {
+    workstationEnv = buildEnv {
       name = "workstation-environment";
-      paths = with pkgs; [ screen gitMinimal tig ack zsh irssi macvim ];
+      paths = [ screen gitMinimal tig ack zsh irssi macvim ];
     };
   };
 }
