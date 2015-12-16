@@ -1,3 +1,5 @@
+{ pkgs }:
+
 {
   packageOverrides = pkgs: with pkgs; rec {
     workstationEnv = buildEnv {
