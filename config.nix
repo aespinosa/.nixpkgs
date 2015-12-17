@@ -39,5 +39,9 @@
       buildInputs = [ thor mixlib-shellout safe_yaml net-ssh net-scp ];
     };
 
+    kitchen-vagrant = buildRubyGem {
+      name = "kitchen-vagrant-0.19.0";
+      sha256 = "0sydjihhvnr40vqnj7bg65zxf00crwvwdli1av03ghhggrp5scla";
+    };
   };
 }
