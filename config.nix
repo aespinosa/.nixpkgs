@@ -43,5 +43,10 @@
       name = "kitchen-vagrant-0.19.0";
       sha256 = "0sydjihhvnr40vqnj7bg65zxf00crwvwdli1av03ghhggrp5scla";
     };
+
+    chefEnv = buildEnv {
+      name = "chefEnv";
+      paths = [ test-kitchen kitchen-vagrant ];
+    };
   };
 }
