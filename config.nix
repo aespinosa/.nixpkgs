@@ -12,6 +12,7 @@
       buildInputs = [ ruby ];
       shellHook = ''
         export GEM_HOME=$out
+        export PATH=$GEM_HOME/bin:$PATH
       '';
     };
   };
