@@ -15,5 +15,15 @@
         export PATH=$GEM_HOME/bin:$PATH
       '';
     };
+
+    chefEnv = stdenv.mkDerivation {
+      name = "chefEnv";
+      buildInputs = [ ruby_2_1_6 ];
+      shellHook = ''
+        export GEM_HOME=$out
+        export PATH=$GEM_HOME/bin:$PATH
+      '';
+    };
+
   };
 }
