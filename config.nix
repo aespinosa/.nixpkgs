@@ -18,7 +18,8 @@
 
     chefEnv = stdenv.mkDerivation {
       name = "chefEnv";
-      buildInputs = [ ruby_2_1_6 ];
+      buildInputs = [ ruby_2_1_6 darwin.apple_sdk.frameworks.CoreServices
+                      darwin.libobjc];
       shellHook = ''
         export GEM_HOME=$out
         export PATH=$GEM_HOME/bin:$PATH
