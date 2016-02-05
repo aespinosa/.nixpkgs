@@ -9,7 +9,8 @@
 
     rubyEnv = stdenv.mkDerivation {
       name = "rubyEnv";
-      buildInputs = [ ruby ];
+      buildInputs = [ ruby darwin.apple_sdk.frameworks.CoreServices
+                      darwin.libobjc];
       shellHook = ''
         export GEM_HOME=$out
         export PATH=$GEM_HOME/bin:$PATH
