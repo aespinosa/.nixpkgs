@@ -27,5 +27,16 @@
       '';
     };
 
+    plistService = callPackage ./plist.nix {};
+
+    logDir = "/usr/local/var/log";
+
+    jenkinsService = plistService {
+      name = "jenkins";
+      programArgs = [ "java" "-jar" "${jenkins}" ];
+      stdout = "${logDir}/jenkins.log";
+      stderr = "${logDir}/jenkins.log";
+    };
+
   };
 }
