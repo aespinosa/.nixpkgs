@@ -5,7 +5,7 @@ My Nix configuration files
 # LICENSE
 
 
-Copyright (C) 2015 Allan Espinosa (allan.espinosa@outlook.com)
+Copyright (C) 2015-2016 Allan Espinosa (allan.espinosa@outlook.com)
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the "Software"),
