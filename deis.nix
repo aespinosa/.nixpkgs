@@ -1,6 +1,24 @@
 { stdenv, fetchurl, awscli, makeWrapper, pyyaml }:
 
 let
+  deisCli = stdenv.mkDerivation {
+    name = "deis-1.12.3";
+    src = fetchurl {
+      url = "https://github.com/deis/deis/releases/download/v1.12.3/deis-cli-1.12.3-darwin-amd64.run";
+      sha256 = "1a25azvcfkgrxp269bkyjaksg79n9ipvqma9dqj1fy08vm4d5w3p";
+    };
+
+    phases = [ "unpackPhase" "installPhase" ];
+
+    unpackPhase = ''
+      bash $src
+    '';
+
+    installPhase = ''
+      mkdir -p $out/bin
+      cp deis $out/bin
+    '';
+  };
   deisCtl = stdenv.mkDerivation {
     name = "deisctl-1.12.3";
     buildInputs = [ makeWrapper ];
@@ -28,5 +46,5 @@ let
 
 stdenv.mkDerivation {
   name = "deisEnvironment";
-  buildInputs = [ awscli deisCtl pyyaml ];
+  buildInputs = [ awscli deisCtl pyyaml deisCli ];
 }
