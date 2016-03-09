@@ -1,4 +1,4 @@
-{ stdenv, fetchurl, awscli, makeWrapper }:
+{ stdenv, fetchurl, awscli, makeWrapper, pyyaml }:
 
 let
   deisCtl = stdenv.mkDerivation {
@@ -20,7 +20,7 @@ let
       mkdir -p $out/libexec
       cp deisctl $out/libexec/deisctl
       mkdir -p $out/lib/deis/units
-      makeWrapper $out/libexec/deisctl $out/bin/deisctl --set DEISCTL_TUNNEL $out/lib/deis/units
+      makeWrapper $out/libexec/deisctl $out/bin/deisctl --set DEISCTL_UNITS $out/lib/deis/units
 
       $out/bin/deisctl refresh-units -p $out/lib/deis/units 
     '';
