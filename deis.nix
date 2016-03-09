@@ -28,5 +28,5 @@ let
 
 stdenv.mkDerivation {
   name = "deisEnvironment";
-  buildInputs = [ awscli deisCtl ];
+  buildInputs = [ awscli deisCtl pyyaml ];
 }

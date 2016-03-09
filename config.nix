@@ -28,6 +28,6 @@
     };
 
     jenkinsService = callPackage ./jenkins.nix {};
-    deisEnv = callPackage ./deis.nix {};
+    deisEnv = callPackage ./deis.nix { inherit (pythonPackages) pyyaml; };
   };
 }
