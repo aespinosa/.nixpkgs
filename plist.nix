@@ -1,4 +1,4 @@
-# Copied verbatim from
+# Original code from
 # https://github.com/pikajude/config.nix/blob/master/system/plist-service.nix
 { stdenv, writeTextDir }:
 
@@ -20,7 +20,7 @@ let
     </array>
   '';
   with_ = x: y: stdenv.lib.optionalString (x != null) y;
-  drv = writeTextDir "${label}.plist" ''
+  drv = writeTextDir "Library/LaunchAgents/${label}.plist" ''
   <?xml version="1.0" encoding="UTF-8"?>
   <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
   <plist version="1.0">
