@@ -1,6 +1,7 @@
 { pkgs }:
 
 {
+  allowUnfree = true;
   packageOverrides = pkgs: with pkgs; rec {
     workstationEnv = buildEnv {
       name = "workstation-environment";
@@ -27,7 +28,24 @@
       '';
     };
 
+    plistService = callPackage ./plist.nix {};
+
     jenkinsService = callPackage ./jenkins.nix {};
+    aptCacherService = plistService {
+      name = "apt-cacher-ng";
+      programArgs = [
+        "${apt-cacher-ng}/sbin/apt-cacher-ng" "-c"
+        "/usr/local/etc/apt-cacher-ng"
+        "foreground=1"
+      ];
+    };
+    dnsmasqService = plistService {
+      name = "dnsmasq";
+      programArgs = [
+        "${dnsmasq}/bin/dnsmasq" "--keep-in-foreground"
+        "-C" "/usr/local/etc/dnsmasq.conf"
+      ];
+    };
     deisEnv = callPackage ./deis.nix { inherit (pythonPackages) pyyaml; };
   };
 }
