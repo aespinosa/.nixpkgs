@@ -1,13 +1,14 @@
 { stdenv, fetchurl, callPackage }:
 
+
 let 
   plistService = callPackage ./plist.nix {};
   logDir = "/usr/local/var/log";
   jenkins2 = stdenv.mkDerivation {
-    name = "jenkins-2.0-alpha";
+    name = "jenkins-2.0-alpha-3";
     src = fetchurl {
-      url = "http://mirrors.jenkins-ci.org/war-rc/2.0/jenkins.war";
-      sha256 = "133r6z38gmllr7373gz85j9k5c7gdiz9p8c072dkrmwfzyxf51jx";
+      url = "http://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/2.0-alpha-3/jenkins-war-2.0-alpha-3.war";
+      sha256 = "1m7f55ism5kywx85s842mjb50za77fs70jxhnj9lx2dhlcp4ym9w";
     };
 
     buildCommand = "ln -sf $src $out";
