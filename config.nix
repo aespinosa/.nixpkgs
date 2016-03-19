@@ -60,6 +60,14 @@
         "${nexus}/conf/jetty-requestlog.xml"
       ];
     };
+
+    shoutService = plistService {
+      name = "shout";
+      programArgs = [
+        "${shout}/bin/shout" "--private" "start"
+      ];
+    };
+
     deisEnv = callPackage ./deis.nix { inherit (pythonPackages) pyyaml; };
   };
 }
