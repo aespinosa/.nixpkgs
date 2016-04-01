@@ -63,15 +63,7 @@
       ];
     };
 
-    shoutService = plistService {
-      name = "shout";
-      programArgs = [
-        "${shout}/bin/shout" "--private" "start"
-      ];
-    };
-
     deisEnv = callPackage ./deis.nix { inherit (pythonPackages) pyyaml; };
-
 
     ecsCli = stdenv.mkDerivation {
       name = "ecs-cli-0.2.1";
