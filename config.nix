@@ -72,6 +72,21 @@
 
     deisEnv = callPackage ./deis.nix { inherit (pythonPackages) pyyaml; };
 
+
+    ecsCli = stdenv.mkDerivation {
+      name = "ecs-cli-0.2.1";
+      src = fetchurl {
+        url = "https://s3.amazonaws.com/amazon-ecs-cli/ecs-cli-darwin-amd64-v0.2.1";
+        sha256 = "12yrqan7ilxsxplmmbii7n2vpzwa0c6phfhbw0rl6xgn3zmisxhf";
+      };
+
+      buildCommand = ''
+        mkdir -p $out/bin
+        cp -v $src $out/bin/ecs-cli
+        chmod 755 $out/bin/ecs-cli
+      '';
+    };
+
     dockerEnv = stdenv.mkDerivation {
       name = "docker-environment";
       buildInputs = [
