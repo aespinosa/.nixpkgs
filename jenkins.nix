@@ -4,11 +4,12 @@
 let 
   plistService = callPackage ./plist.nix {};
   logDir = "/usr/local/var/log";
-  jenkins2 = stdenv.mkDerivation {
-    name = "jenkins-2.0-alpha-3";
+  jenkins2 = stdenv.mkDerivation rec {
+    name = "jenkins-${version}";
+    version = "2.0-beta-2";
     src = fetchurl {
-      url = "http://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/2.0-alpha-3/jenkins-war-2.0-alpha-3.war";
-      sha256 = "1m7f55ism5kywx85s842mjb50za77fs70jxhnj9lx2dhlcp4ym9w";
+      url = "http://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/${version}/jenkins-war-${version}.war";
+      sha256 = "1nhz99fzgnm8v8s6p4wb7fry9495mwrzbivpmp5yj2aj43wpxick";
     };
 
     buildCommand = "ln -sf $src $out";
