@@ -79,6 +79,11 @@
       '';
     };
 
+    ecsEnv = stdenv.mkDerivation {
+      name = "ecs-dev-environment";
+      buildInputs = [ ecsCli terraform awscli ];
+    };
+
     dockerEnv = callPackage ./docker.nix { };
 
     terraform = stdenv.mkDerivation {
