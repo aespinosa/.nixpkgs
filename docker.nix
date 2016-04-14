@@ -4,10 +4,10 @@ stdenv.mkDerivation {
   name = "docker-environment";
   buildInputs = [
     (stdenv.mkDerivation {
-      name = "docker-machine-0.6.0";
+      name = "docker-machine-0.7.0";
       src = fetchurl {
-        url = "https://github.com/docker/machine/releases/download/v0.6.0/docker-machine-Darwin-x86_64";
-        sha256 = "1dxs2s1hyyvrkf7kxwvpzamyqnqs6p5phm2v5p5gsfxf69jmkkwn";
+        url = "https://github.com/docker/machine/releases/download/v0.7.0/docker-machine-Darwin-x86_64";
+        sha256 = "1c42vyj9zz1qxfwmqj6nwf4bbcybghq53xb8dsr862cy4h2xd3v0";
       };
       buildCommand = ''
         mkdir -p $out/bin
