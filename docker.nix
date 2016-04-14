@@ -16,15 +16,14 @@ stdenv.mkDerivation {
       '';
     })
     (stdenv.mkDerivation {
-      name = "docker-1.10.3";
+      name = "docker-1.11.0";
       src = fetchurl {
-        url = "https://get.docker.com/builds/Darwin/x86_64/docker-1.10.3";
-        sha256 = "0kh5k1rf7vnj0h98fkk91lirmr8wd4ribl8b1i08jsc173c30hq5";
+        url = "https://get.docker.com/builds/Darwin/x86_64/docker-1.11.0.tgz";
+        sha256 = "0wsgzjlbqhd9sq4wmvmxb5084l03fms8cijs1srbw5rfgvrzbr15";
       };
       buildCommand = ''
         mkdir -p $out/bin
-        cp $src $out/bin/docker
-        chmod 755 $out/bin/docker
+        tar -xvzf $src --strip-components=1 -C $out/bin
       '';
     })
     (stdenv.mkDerivation {
