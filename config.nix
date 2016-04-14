@@ -100,5 +100,21 @@
         unzip $src -d $out/bin
       '';
     };
+
+    nexus3 = stdenv.mkDerivation {
+      name = "nexus-3.0.0-03";
+      src = fetchurl {
+        url = "http://download.sonatype.com/nexus/3/nexus-3.0.0-03-unix.tar.gz";
+        sha256 = "1jnh6qcfdywp19yzawjzg41nsaaskbaj5kjwh8haa062zyg7crh6";
+      };
+
+      buildCommand = ''
+        mkdir -p $out
+        tar -xvzf $src --strip-components=1 -C $out
+        substituteInPlace $out/bin/nexus.vmoptions \
+            --replace "-Dkaraf.data=data" "-Dkaraf.data=/usr/local/var/nexus3" \
+            --replace "-Djava.io.tmpdir=data/tmp" "-Djava.io.tmpdir=/usr/local/var/tmp/nexus3"
+      '';
+    };
   };
 }
