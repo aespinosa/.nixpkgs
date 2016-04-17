@@ -2,6 +2,7 @@
 
 {
   allowUnfree = true;
+  allowBroken = true;
   packageOverrides = pkgs: with pkgs; rec {
     workstationEnv = buildEnv {
       name = "workstation-environment";
@@ -114,6 +115,8 @@
         substituteInPlace $out/bin/nexus.vmoptions \
             --replace "-Dkaraf.data=data" "-Dkaraf.data=/usr/local/var/nexus3" \
             --replace "-Djava.io.tmpdir=data/tmp" "-Djava.io.tmpdir=/usr/local/var/tmp/nexus3"
+        substituteInPlace $out/etc/org.sonatype.nexus.cfg \
+            --replace "application-port=8081" "application-port=18081"
       '';
     };
   };
