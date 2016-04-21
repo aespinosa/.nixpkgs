@@ -114,5 +114,18 @@
             --replace "application-port=8081" "application-port=18081"
       '';
     };
+
+    revealjs = stdenv.mkDerivation {
+      name = "revealjs-3.3.0";
+      src = fetchurl {
+        url = "https://github.com/hakimel/reveal.js/archive/3.3.0.tar.gz";
+        sha256 = "0b3jyn91h8cacx8yirzxdw0nyyp1wk7zf28qz6h2i7hd2dpdqvm3";
+      };
+
+      buildCommand = ''
+        mkdir -p $out
+        tar -xvzf $src --strip-components=1 -C $out
+      '';
+    };
   };
 }
