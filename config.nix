@@ -128,5 +128,20 @@
         tar -xvzf $src --strip-components=1 -C $out
       '';
     };
+
+    google-cloud-sdk = stdenv.mkDerivation {
+      name = "google-cloud-sdk-110.0.0";
+      src = fetchurl {
+        url = "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-110.0.0-darwin-x86_64.tar.gz";
+        sha256 = "0fpz2dvs8by1pycf1q5lnwh0k5q7d29ilzb9wnzmx8kgq2716nh4";
+      };
+
+      buildCommand = ''
+        tar -xzf $src --strip-components=1
+        mkdir -p $out
+        cp -rfv bin $out/bin
+        cp -rfv lib $out/lib
+      '';
+    };
   };
 }
