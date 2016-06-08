@@ -2,7 +2,7 @@
 
 {
   allowUnfree = true;
-  #allowBroken = true;
+  allowBroken = true;
   packageOverrides = pkgs: with pkgs; rec {
     workstationEnv = buildEnv {
       name = "workstation-environment";
@@ -141,21 +141,6 @@
         mkdir -p $out
         cp -rfv bin $out/bin
         cp -rfv lib $out/lib
-      '';
-    };
-
-    packer = import /nix/store/bcwpqd5fpklhw12xkgfw4r8fppd54q96-packer-0.8.6.drv;
-
-    go_1_7 = stdenv.mkDerivation {
-      name = "go1.7beta1";
-      src = fetchurl {
-        url = "https://storage.googleapis.com/golang/go1.7beta1.darwin-amd64.tar.gz";
-        sha256 = "00fyshdxv09d8nnqiicm3y1n9h9lwlcz1bba31fgd2k138xpdz4l";
-      };
-
-      buildCommand = ''
-        mkdir -p $out
-        tar xzf $src -C $out --strip-components=1
       '';
     };
   };
