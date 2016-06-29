@@ -84,10 +84,10 @@
     dockerEnv = callPackage ./docker.nix { };
 
     terraform = stdenv.mkDerivation {
-      name = "terraform-0.6.14";
+      name = "terraform-0.6.16";
       src = fetchurl {
-        url = "https://releases.hashicorp.com/terraform/0.6.14/terraform_0.6.14_darwin_amd64.zip";
-        sha256 = "123pl4nlh6iqj2r3viax25zbs1xlfdgf22s3hg2v6p4xaidgad4k";
+        url = "https://releases.hashicorp.com/terraform/0.6.16/terraform_0.6.16_darwin_amd64.zip";
+        sha256 = "0rlkvb2mrm2s9ilp990ql68ncvv2rl0cc0wa2bk7fs0jcf9bgzi3";
       };
 
       buildInputs = [ unzip ];
