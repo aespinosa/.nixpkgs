@@ -159,5 +159,19 @@
         unzip $src
       '';
     };
+
+    kubernetes = stdenv.mkDerivation {
+      name = "kubernetes-1.2.4";
+      src = fetchurl {
+        url = "https://storage.googleapis.com/kubernetes-release/release/v1.2.4/bin/darwin/amd64/kubectl";
+        sha256 = "0a2979zcbz7qhw6k0x13x1c2zxvdkiryskryva99n17y676zi44m";
+      };
+
+      buildCommand = ''
+        mkdir -p $out/bin
+        cp -fv $src $out/bin/kubectl
+        chmod 755 $out/bin/kubectl
+      '';
+    };
   };
 }
