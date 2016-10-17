@@ -184,10 +184,10 @@
     };
 
     kubernetes = stdenv.mkDerivation {
-      name = "kubernetes-1.3.0";
+      name = "kubernetes-1.4.3";
       src = fetchurl {
-        url = "https://storage.googleapis.com/kubernetes-release/release/v1.3.0/bin/darwin/amd64/kubectl";
-        sha256 = "0whq3azjfqb6vwdsa01r67xb866lzqdw84qiarn861gbhvzl7b9y";
+        url = "https://storage.googleapis.com/kubernetes-release/release/v1.4.3/bin/darwin/amd64/kubectl";
+        sha256 = "1jg4z455zg64g8n7v7lzrr7inz7smhgn54h7n0cy1g4fc4pwjp3w";
       };
 
       buildCommand = ''
