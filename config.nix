@@ -6,7 +6,29 @@
   packageOverrides = pkgs: with pkgs; rec {
     workstationEnv = buildEnv {
       name = "workstation-environment";
-      paths = [ screen gitMinimal tig ack zsh irssi macvim ];
+      paths = [ screen gitMinimal tig ack zsh irssi ];
+    };
+
+    macvim = stdenv.mkDerivation {
+      name = "macvim-122";
+      src = fetchurl {
+        url = "https://github.com/macvim-dev/macvim/releases/download/snapshot-112/MacVim.dmg";
+        sha256 = "17xhkfnb6m8im7pad88a2ynz5gkdfwy58dq7wnbmp2rdn66m9i5v";
+      };
+      buildInputs = [ p7zip ];
+      buildCommand = ''
+        7z x $src
+        cd MacVim
+        ls
+        mkdir -p $out/bin $out/Applications
+        cp -fv mvim $out/bin
+        cp -rfv MacVim.app $out/Applications
+
+        chmod 755 $out/bin/mvim
+        ln -sf $out/bin/mvim $out/bin/vim
+        ln -sf $out/bin/mvim $out/bin/vi
+        ln -sf $out/bin/mvim $out/bin/gvim
+      '';
     };
 
     rubyEnv = stdenv.mkDerivation {
