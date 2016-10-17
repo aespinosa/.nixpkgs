@@ -20,9 +20,10 @@
         7z x $src
         cd MacVim
         ls
-        mkdir -p $out/bin $out/Applications
+        mkdir -p $out/bin
         cp -fv mvim $out/bin
-        cp -rfv MacVim.app $out/Applications
+        rm -rf ~/Applications/MacVim.app
+        cp -rfv MacVim.app ~/Applications
 
         chmod 755 $out/bin/mvim
         ln -sf $out/bin/mvim $out/bin/vim
