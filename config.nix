@@ -76,15 +76,9 @@
 
     nexusService = plistService {
       name = "nexus";
-      workingDirectory = nexus.out;
       programArgs = [
-        "java"
-        "-Dnexus-work=/usr/local/var/nexus"
-        "-Dnexus-webapp-context-path=/"
-        "-cp" "${nexus}/conf/:${nexus}/lib/*"
-        "org.sonatype.nexus.bootstrap.Launcher"
-        "${nexus}/conf/jetty.xml"
-        "${nexus}/conf/jetty-requestlog.xml"
+        "${nexus}/bin/nexus"
+        "run"
       ];
     };
 
