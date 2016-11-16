@@ -6,7 +6,7 @@
   packageOverrides = pkgs: with pkgs; rec {
     workstationEnv = buildEnv {
       name = "workstation-environment";
-      paths = [ screen gitMinimal tig ack zsh irssi ];
+      paths = [ screen gitMinimal git-lfs tig ack zsh irssi ];
     };
 
     macvim = stdenv.mkDerivation {
@@ -121,11 +121,11 @@
       '';
     };
 
-    nexus3 = stdenv.mkDerivation {
+    nexus = stdenv.mkDerivation {
       name = "nexus-3.0.0-03";
       src = fetchurl {
-        url = "http://download.sonatype.com/nexus/3/nexus-3.0.0-03-unix.tar.gz";
-        sha256 = "1jnh6qcfdywp19yzawjzg41nsaaskbaj5kjwh8haa062zyg7crh6";
+        url = "http://download.sonatype.com/nexus/3/nexus-3.0.2-02-unix.tar.gz";
+        sha256 = "1wvxhaxvgflshnvlc5h8jb46n7jfgf88yz7fssrp4vhqkvxsd63c";
       };
 
       buildCommand = ''
@@ -134,21 +134,6 @@
         substituteInPlace $out/bin/nexus.vmoptions \
             --replace "-Dkaraf.data=data" "-Dkaraf.data=/usr/local/var/nexus3" \
             --replace "-Djava.io.tmpdir=data/tmp" "-Djava.io.tmpdir=/usr/local/var/tmp/nexus3"
-        substituteInPlace $out/etc/org.sonatype.nexus.cfg \
-            --replace "application-port=8081" "application-port=18081"
-      '';
-    };
-
-    revealjs = stdenv.mkDerivation {
-      name = "revealjs-3.3.0";
-      src = fetchurl {
-        url = "https://github.com/hakimel/reveal.js/archive/3.3.0.tar.gz";
-        sha256 = "0b3jyn91h8cacx8yirzxdw0nyyp1wk7zf28qz6h2i7hd2dpdqvm3";
-      };
-
-      buildCommand = ''
-        mkdir -p $out
-        tar -xvzf $src --strip-components=1 -C $out
       '';
     };
 
