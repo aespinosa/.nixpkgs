@@ -22,10 +22,10 @@
         ls
         mkdir -p $out/bin
         cp -fv mvim $out/bin
-        rm -rf ~/Applications/MacVim.app
-        cp -rfv MacVim.app ~/Applications
+        mkdir -p $out/Applications
+        cp -rfv MacVim.app $out/Applications
 
-        chmod 755 $out/bin/mvim
+        chmod 755 $out/bin/mvim $out/Applications/MacVim.app/Contents/MacOS/*
         ln -sf $out/bin/mvim $out/bin/vim
         ln -sf $out/bin/mvim $out/bin/vi
         ln -sf $out/bin/mvim $out/bin/gvim
