@@ -148,10 +148,10 @@
     };
 
     packer = stdenv.mkDerivation {
-      name = "packer-0.10.1";
+      name = "packer-0.12.0";
       src = fetchurl {
-        url =  "https://releases.hashicorp.com/packer/0.10.1/packer_0.10.1_darwin_amd64.zip";
-        sha256 = "10gilh3mriqby132w0ifsmd8jj19vbgwi094wnxhqgxl3yzj3ips";
+        url =  "https://releases.hashicorp.com/packer/0.12.0/packer_0.12.0_darwin_amd64.zip";
+        sha256 = "e3f25ad619f35e10a4195c971d78f29abceb16877bbf2bd75182140373d02bd3";
       };
 
       buildInputs = [ unzip ];
