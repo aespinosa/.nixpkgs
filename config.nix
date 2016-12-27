@@ -82,8 +82,6 @@
       ];
     };
 
-    deisEnv = callPackage ./deis.nix { inherit (pythonPackages) pyyaml; };
-
     ecsCli = stdenv.mkDerivation {
       name = "ecs-cli-0.2.1";
       src = fetchurl {
