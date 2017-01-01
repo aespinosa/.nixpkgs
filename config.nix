@@ -96,7 +96,7 @@
       '';
     };
 
-    dockerEnv = callPackage ./docker.nix { };
+    containerEnv = callPackage ./containers.nix { };
 
     terraform = stdenv.mkDerivation {
       name = "terraform-0.7.0";
@@ -161,32 +161,5 @@
       '';
     };
 
-    kubernetes = stdenv.mkDerivation {
-      name = "kubernetes-1.5.1";
-      src = fetchurl {
-        url = "https://storage.googleapis.com/kubernetes-release/release/v1.5.1/bin/darwin/amd64/kubectl";
-        sha256 = "0hd1yvam3phyz9z5rmqqdv5vfv5wwjwmplydqqincb244nxqfi1m";
-      };
-
-      buildCommand = ''
-        mkdir -p $out/bin
-        cp -fv $src $out/bin/kubectl
-        chmod 755 $out/bin/kubectl
-      '';
-    };
-
-    minikube = stdenv.mkDerivation {
-      name = "minikube-0.14.0";
-      src = fetchurl {
-        url = "https://github.com/kubernetes/minikube/releases/download/v0.14.0/minikube-darwin-amd64";
-        sha256 = "0a2zwfbddz3131923waxlks9j7wqbcra163ny8gc97cjw6hha24m";
-      };
-
-      buildCommand = ''
-        mkdir -p $out/bin
-        cp $src $out/bin/minikube
-        chmod 755 $out/bin/minikube
-      '';
-    };
   };
 }
