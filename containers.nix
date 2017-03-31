@@ -28,10 +28,10 @@ stdenv.mkDerivation {
       '';
     })
     (stdenv.mkDerivation {
-      name = "minikube-0.14.0";
+      name = "minikube-0.17.1";
       src = fetchurl {
-        url = "https://github.com/kubernetes/minikube/releases/download/v0.14.0/minikube-darwin-amd64";
-        sha256 = "0a2zwfbddz3131923waxlks9j7wqbcra163ny8gc97cjw6hha24m";
+        url = "https://github.com/kubernetes/minikube/releases/download/v0.17.1/minikube-darwin-amd64";
+        sha256 = "12f3b7s5lwpvzx4wj6i6h62n4zjshqf206fxxwpwx9kpsdaw6xdi";
       };
 
       buildCommand = ''
