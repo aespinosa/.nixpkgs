@@ -74,14 +74,7 @@
     plistService = callPackage ./plist.nix {};
 
     jenkinsService = callPackage ./jenkins.nix {};
-    aptCacherService = plistService {
-      name = "apt-cacher-ng";
-      programArgs = [
-        "${apt-cacher-ng}/sbin/apt-cacher-ng" "-c"
-        "/usr/local/etc/apt-cacher-ng"
-        "foreground=1"
-      ];
-    };
+
     dnsmasqService = plistService {
       name = "dnsmasq";
       programArgs = [
