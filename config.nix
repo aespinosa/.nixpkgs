@@ -122,6 +122,9 @@
             --replace "-Dkaraf.data=../sonatype-work/nexus3" "-Dkaraf.data=/usr/local/var/nexus3" \
             --replace "-Djava.io.tmpdir=../sonatype-work/nexus3/tmp" "-Djava.io.tmpdir=/usr/local/var/tmp/nexus3" \
             --replace "-XX:LogFile=../sonatype-work/nexus3/log/jvm.log" "-XX:LogFile=/usr/local/var/nexus3/log/jvm.log"
+
+        substituteInPlace $out/bin/nexus \
+            --replace "# INSTALL4J_JAVA_HOME_OVERRIDE=" "app_java_home=\"/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home\""
       '';
     };
 
