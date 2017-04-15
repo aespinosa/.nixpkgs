@@ -1,8 +1,23 @@
-{ stdenv, fetchurl }:
+{ stdenv, fetchurl, unzip }:
 
 stdenv.mkDerivation {
   name = "container-environment";
   buildInputs = [
+    (stdenv.mkDerivation{
+      name = "habitat-0.19.0";
+      buildInputs = [ unzip ];
+      src = fetchurl {
+        url = "https://dl.bintray.com/habitat/stable/darwin/x86_64/hab-0.19.0-20170311030920-x86_64-darwin.zip";
+        sha256 = "0n0p5r3minj2j2yiklkqs084x1q5s4dywf6dcvbb8gsjzj1nzy41";
+      };
+
+      buildCommand = ''
+        unzip $src
+        mkdir -p $out/bin
+        cp hab-0.19.0-20170311030920-x86_64-darwin/hab $out/bin/hab
+        chmod 755 $out/bin/hab
+      '';
+    })
     (stdenv.mkDerivation {
       name = "docker-1.11.0";
       src = fetchurl {
