@@ -8,6 +8,7 @@ let
     buildCommand = ''
        GEM_HOME=$out gem install --no-doc chef-dk --version 1.2.22 \
           --source http://nexus.dev:8081/repository/rubygems/
+       rm -fv $out/bin/*
        makeWrapper ${ruby}/bin/ruby $out/bin/chef \
           --add-flags $out/gems/chef-dk-1.2.22/bin/chef \
           --set GEM_HOME $out
