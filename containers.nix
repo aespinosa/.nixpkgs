@@ -15,10 +15,10 @@ stdenv.mkDerivation {
       '';
     })
     (stdenv.mkDerivation {
-      name = "kubernetes-1.5.1";
+      name = "kubernetes-1.6.0";
       src = fetchurl {
-        url = "https://storage.googleapis.com/kubernetes-release/release/v1.5.1/bin/darwin/amd64/kubectl";
-        sha256 = "0hd1yvam3phyz9z5rmqqdv5vfv5wwjwmplydqqincb244nxqfi1m";
+        url = "https://storage.googleapis.com/kubernetes-release/release/v1.6.0/bin/darwin/amd64/kubectl";
+        sha256 = "08v42bi0j5x5w4lzr5n7wgqmgg2qj7683ny460fp0p967mkpazkh";
       };
 
       buildCommand = ''
