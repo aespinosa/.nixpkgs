@@ -45,8 +45,8 @@ stdenv.mkDerivation {
     (stdenv.mkDerivation {
       name = "minikube-0.17.1";
       src = fetchurl {
-        url = "https://github.com/kubernetes/minikube/releases/download/v0.17.1/minikube-darwin-amd64";
-        sha256 = "12f3b7s5lwpvzx4wj6i6h62n4zjshqf206fxxwpwx9kpsdaw6xdi";
+        url = "https://storage.googleapis.com/minikube/releases/v0.18.0/minikube-darwin-amd64";
+        sha256 = "1svdcrbbrw92xjkz4xfydqzqk05sb0ys1lwvfs0cxyncgksca79h";
       };
 
       buildCommand = ''
