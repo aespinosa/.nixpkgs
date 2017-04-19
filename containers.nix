@@ -19,14 +19,16 @@ stdenv.mkDerivation {
       '';
     })
     (stdenv.mkDerivation {
-      name = "docker-1.11.0";
+      name = "docker-17.05-ce-rc1";
       src = fetchurl {
-        url = "https://get.docker.com/builds/Darwin/x86_64/docker-1.11.0.tgz";
-        sha256 = "0wsgzjlbqhd9sq4wmvmxb5084l03fms8cijs1srbw5rfgvrzbr15";
+        url = "https://test.docker.com/builds/Darwin/x86_64/docker-17.05.0-ce-rc1.tgz";
+        sha256 = "1z8d9vfjgwhgmdi57r64zkw0i59mgvh4lgg07pb821qljgd78dnl";
       };
       buildCommand = ''
         mkdir -p $out/bin
-        tar -xvzf $src --strip-components=1 -C $out/bin
+        tar -xvzf $src
+        cp -fv docker/docker $out/bin
+        chmod 755 $out/bin/docker
       '';
     })
     (stdenv.mkDerivation {
