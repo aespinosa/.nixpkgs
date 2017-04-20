@@ -22,7 +22,7 @@ let
     buildCommand = ''
        GEM_HOME=$out gem install --no-doc test-kitchen --version 1.16.0 \
           --source http://nexus.dev:8081/repository/rubygems/
-       GEM_HOME=$out gem install --no-doc kitchen-vagrant --version 1.1.0 \
+       GEM_HOME=$out gem install --no-doc kitchen-vagrant --version 1.0.2 \
           --source http://nexus.dev:8081/repository/rubygems/
 
        rm -fv $out/bin/mixlib-install $out/bin/safe_yaml $out/bin/thor 
