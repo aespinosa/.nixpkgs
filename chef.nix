@@ -1,6 +1,19 @@
-{ stdenv, ruby, makeWrapper }:
+{ stdenv, ruby, rake, makeWrapper }:
 
 let
+  cookstyle = stdenv.mkDerivation {
+    name = "cookstyle-1.3.1";
+    buildInputs = [ ruby makeWrapper rake ];
+    buildCommand = ''
+       GEM_PATH=${rake} \
+       GEM_HOME=$out gem install --no-doc cookstyle --version 1.3.1 \
+          --source http://nexus.dev:8081/repository/rubygems/
+       rm -rfv $out/bin/*
+       makeWrapper ${ruby}/bin/ruby $out/bin/cookstyle \
+          --add-flags $out/gems/cookstyle-1.3.1/bin/cookstyle \
+          --set GEM_HOME $out
+    '';
+  };
   chef-dk = stdenv.mkDerivation {
     name = "chef-dk-1.2.22";
     buildInputs = [ ruby makeWrapper ];
@@ -35,5 +48,5 @@ let
 in
 stdenv.mkDerivation {
   name = "chef-environment";
-  buildInputs = [ test-kitchen chef-dk ];
+  buildInputs = [ test-kitchen chef-dk cookstyle ];
 }
