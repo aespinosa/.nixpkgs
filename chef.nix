@@ -1,7 +1,20 @@
-{ stdenv, ruby, rake, makeWrapper }:
+{ stdenv, ruby, rake, makeWrapper, libiconv, zlib }:
 
 let
 
+  foodcritic = stdenv.mkDerivation {
+    name = "foodcritic-11.0.0";
+    buildInputs = [ ruby makeWrapper libiconv zlib ];
+    buildCommand = ''
+       GEM_HOME=$out gem install --no-doc foodcritic --version 11.0.0 \
+          --source http://nexus.dev:8081/repository/rubygems/
+       rm -fv $out/bin/*
+       makeWrapper ${ruby}/bin/ruby $out/bin/foodcritic \
+          --add-flags $out/gems/foodcritic-11.0.0/bin/foodcritic \
+          --set GEM_HOME $out
+    '';
+
+  };
   cookstyle = stdenv.mkDerivation {
     name = "cookstyle-1.3.1";
     buildInputs = [ ruby makeWrapper rake ];
@@ -62,5 +75,5 @@ let
 in
 stdenv.mkDerivation {
   name = "chef-environment";
-  buildInputs = [ test-kitchen chef-dk cookstyle inspec ];
+  buildInputs = [ test-kitchen chef-dk cookstyle inspec foodcritic ];
 }
