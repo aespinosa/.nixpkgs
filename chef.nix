@@ -64,6 +64,8 @@ let
           --source http://nexus.dev:8081/repository/rubygems/
        GEM_HOME=$out gem install --no-doc kitchen-vagrant --version 1.0.2 \
           --source http://nexus.dev:8081/repository/rubygems/
+       GEM_HOME=$out gem install --no-doc kitchen-google --version 1.2.0 \
+          --source http://nexus.dev:8081/repository/rubygems/
 
        rm -fv $out/bin/mixlib-install $out/bin/safe_yaml $out/bin/thor 
 
