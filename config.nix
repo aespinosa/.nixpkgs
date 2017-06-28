@@ -86,8 +86,8 @@
     nexus = stdenv.mkDerivation {
       name = "nexus-3.3.0-01";
       src = fetchurl {
-        url = "http://download.sonatype.com/nexus/3/nexus-3.3.0-01-unix.tar.gz";
-        sha256 = "1s7wi6gid062lraiwmifaq4cgrj6r1800nihdl58mdfqqdddpb9g";
+        url = "http://download.sonatype.com/nexus/3/nexus-3.3.2-02-unix.tar.gz";
+        sha256 = "1g2k443xwc9i70176480h1h7sq7as8wnkdawm0danqd1j0dhrlik";
       };
 
       buildCommand = ''
