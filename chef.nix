@@ -1,4 +1,4 @@
-{ stdenv, ruby, rake, makeWrapper, libiconv, zlib }:
+{ stdenv, ruby, rake, makeWrapper, libiconv, zlib, glibcLocales }:
 
 let
 
@@ -77,5 +77,6 @@ let
 in
 stdenv.mkDerivation {
   name = "chef-environment";
-  buildInputs = [ test-kitchen chef-dk cookstyle inspec foodcritic ];
+  buildInputs = [ test-kitchen chef-dk cookstyle inspec foodcritic ]
+    ++ stdenv.lib.optional (stdenv.isLinux) glibcLocales;
 }
