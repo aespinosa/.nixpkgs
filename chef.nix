@@ -42,15 +42,15 @@ let
     '';
   };
   chef-dk = stdenv.mkDerivation {
-    name = "chef-dk-1.2.22";
+    name = "chef-dk-2.0.28";
     buildInputs = [ ruby makeWrapper ];
 
     buildCommand = ''
-       GEM_HOME=$out gem install --no-doc chef-dk --version 1.2.22 \
+       GEM_HOME=$out gem install --no-doc chef-dk --version 2.0.28 \
           --source http://nexus.dev:8081/repository/rubygems/
        rm -fv $out/bin/*
        makeWrapper ${ruby}/bin/ruby $out/bin/chef \
-          --add-flags $out/gems/chef-dk-1.2.22/bin/chef \
+          --add-flags $out/gems/chef-dk-2.0.28/bin/chef \
           --set GEM_HOME $out
     '';
   };
