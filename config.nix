@@ -9,6 +9,17 @@
       paths = [ screen gitMinimal git-lfs tig ack zsh irssi ];
     };
 
+    vmwareFusion = stdenv.mkDerivation {
+      name = "vmware-fusion";
+      buildCommand = ''
+        mkdir -p $out/bin
+        ln -sf /Applications/VMware\ Fusion.app/Contents/Library/vmrun \
+           $out/bin/vmrun
+        ln -sf /Applications/VMware\ Fusion.app/Contents/Library/vmnet-cli \
+           $out/bin/vmnet-cli
+      '';
+    };
+
     macvim = stdenv.mkDerivation {
       name = "macvim-122";
       src = fetchurl {
