@@ -81,4 +81,13 @@ stdenv.mkDerivation {
   name = "chef-environment";
   buildInputs = [ test-kitchen chef-dk cookstyle inspec foodcritic ]
     ++ stdenv.lib.optional (stdenv.isLinux) glibcLocales;
+  buildCommand = ''
+    mkdir -p $out/bin
+    ln -sf ${test-kitchen}/bin/kitchen $out/bin
+    ln -sf ${chef-dk}/bin/chef $out/bin
+    ln -sf ${cookstyle}/bin/cookstyle $out/bin
+    ln -sf ${inspec}/bin/inspec $out/bin
+    ln -sf ${foodcritic}/bin/foodcritic $out/bin
+    fixupPhase
+    '';
 }
