@@ -29,16 +29,18 @@ let
     '';
   };
   inspec = stdenv.mkDerivation {
-    name = "inspec-1.19.2";
+    name = "inspec-1.31.1";
     buildInputs = [ ruby makeWrapper rake ];
     buildCommand = ''
        export GEM_PATH=${rake}
-       GEM_HOME=$out gem install --no-doc kitchen-inspec --version 0.17.0 \
+       GEM_HOME=$out gem install --no-doc inspec --version 1.31.1 \
+          --source http://nexus.dev:8081/repository/rubygems/
+       GEM_HOME=$out gem install --no-doc kitchen-inspec --version 0.19.0 \
           --source http://nexus.dev:8081/repository/rubygems/
        rm -fv $out/bin/*
        makeWrapper ${ruby}/bin/ruby $out/bin/inspec \
-            --add-flags $out/gems/inspec-1.19.2/bin/inspec \
-            -- set GEM_HOME $out
+            --add-flags $out/gems/inspec-1.31.1/bin/inspec \
+            --set GEM_HOME $out
     '';
   };
   chef-dk = stdenv.mkDerivation {
