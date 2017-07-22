@@ -45,10 +45,7 @@
 
     rubyEnv = stdenv.mkDerivation {
       name = "rubyEnv";
-      buildInputs = [
-        ruby libiconv libxml2 libxslt
-        darwin.apple_sdk.frameworks.CoreServices darwin.libobjc
-      ];
+      buildInputs = [ ruby libiconv libxml2 libxslt ];
       shellHook = ''
         export GEM_HOME=$out
         export PATH=$GEM_HOME/bin:$PATH
