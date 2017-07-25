@@ -52,7 +52,7 @@
       '';
     };
 
-    chefEnv =  callPackage ./chef.nix {};
+    chefEnv =  callPackage ./chef.nix { ruby = ruby_2_4; };
 
     plistService = callPackage ./plist.nix {};
 
