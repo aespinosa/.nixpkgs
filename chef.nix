@@ -58,6 +58,7 @@ let
           --set GEM_HOME $out
     '';
   };
+
   test-kitchen = stdenv.mkDerivation {
     name = "test-kitchen-1.16.0";
 
@@ -78,6 +79,23 @@ let
           --set GEM_HOME $out
     '';
   };
+
+  stove = stdenv.mkDerivation {
+    name = "stove-5.2.0";
+
+    buildInputs = [ ruby makeWrapper ];
+
+    buildCommand = ''
+      GEM_HOME=$out gem install --no-doc stove --version 5.2.0 \
+         --source http://nexus.dev:8081/repository/rubygems/
+
+      rm -fv $out/bin/*
+
+      makeWrapper ${ruby}/bin/ruby $out/bin/stove \
+         --add-flags $out/gems/stove-5.2.0/bin/stove \
+         --set GEM_HOME $out
+   '';
+  };
 in
 stdenv.mkDerivation {
   name = "chef-environment";
@@ -90,6 +108,7 @@ stdenv.mkDerivation {
     ln -sf ${cookstyle}/bin/cookstyle $out/bin
     ln -sf ${inspec}/bin/inspec $out/bin
     ln -sf ${foodcritic}/bin/foodcritic $out/bin
+    ln -sf ${stove}/bin/stove $out/bin
     fixupPhase
     '';
 }
