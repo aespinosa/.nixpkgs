@@ -107,7 +107,7 @@
             --replace "-XX:LogFile=../sonatype-work/nexus3/log/jvm.log" "-XX:LogFile=/usr/local/var/nexus3/log/jvm.log"
 
         substituteInPlace $out/bin/nexus \
-            --replace "# INSTALL4J_JAVA_HOME_OVERRIDE=" "app_java_home=\"/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home\""
+            --replace "# INSTALL4J_JAVA_HOME_OVERRIDE=" "app_java_home=\"${jre8_headless}\""
       '';
     };
 
