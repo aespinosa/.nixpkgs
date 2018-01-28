@@ -92,10 +92,10 @@
     };
 
     nexus = stdenv.mkDerivation {
-      name = "nexus-3.6.0-02";
+      name = "nexus-3.7.1-02";
       src = fetchurl {
-        url = "http://download.sonatype.com/nexus/3/nexus-3.6.0-02-unix.tar.gz";
-        sha256 = "19xjddr8iwbwlgzylhvf51kliyayyax283bhm50qkk23gc4mpfa0";
+        url = "http://download.sonatype.com/nexus/3/nexus-3.7.1-02-unix.tar.gz";
+        sha256 = "1yybcz8f2n25w2a2hqs44s373c6876qazqslj1ks1mp2x9j50q6n";
       };
 
       buildCommand = ''
