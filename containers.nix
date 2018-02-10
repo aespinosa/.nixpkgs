@@ -4,18 +4,16 @@ stdenv.mkDerivation {
   name = "container-environment";
   buildInputs = [
     (stdenv.mkDerivation{
-      name = "habitat-0.19.0";
-      buildInputs = [ unzip ];
+      name = "docker-machine-0.13.0";
       src = fetchurl {
-        url = "https://dl.bintray.com/habitat/stable/darwin/x86_64/hab-0.19.0-20170311030920-x86_64-darwin.zip";
-        sha256 = "0n0p5r3minj2j2yiklkqs084x1q5s4dywf6dcvbb8gsjzj1nzy41";
+        url = "https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-Darwin-x86_64";
+        sha256 = "01pfffdrxyb6sl9mcpi3gyd9yahzafz09phn9vs1rsq93k2q7z75";
       };
 
       buildCommand = ''
-        unzip $src
         mkdir -p $out/bin
-        cp hab-0.19.0-20170311030920-x86_64-darwin/hab $out/bin/hab
-        chmod 755 $out/bin/hab
+        cp $src $out/bin/docker-machine
+        chmod 755 $out/bin/docker-machine
       '';
     })
     (stdenv.mkDerivation {
