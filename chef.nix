@@ -3,14 +3,14 @@
 let
 
   foodcritic = stdenv.mkDerivation {
-    name = "foodcritic-11.0.0";
+    name = "foodcritic-12.3.0";
     buildInputs = [ ruby makeWrapper libiconv zlib ];
     buildCommand = ''
-       GEM_HOME=$out gem install --no-doc foodcritic --version 11.0.0 \
+       GEM_HOME=$out gem install --no-doc foodcritic --version 12.3.0 \
           --source http://nexus.dev:8081/repository/rubygems/
        rm -fv $out/bin/*
        makeWrapper ${ruby}/bin/ruby $out/bin/foodcritic \
-          --add-flags $out/gems/foodcritic-11.0.0/bin/foodcritic \
+          --add-flags $out/gems/foodcritic-12.3.0/bin/foodcritic \
           --set GEM_HOME $out
     '';
 
