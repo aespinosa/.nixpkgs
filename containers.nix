@@ -3,19 +3,6 @@
 stdenv.mkDerivation {
   name = "container-environment";
   buildInputs = [
-    (stdenv.mkDerivation{
-      name = "docker-machine-0.13.0";
-      src = fetchurl {
-        url = "https://github.com/docker/machine/releases/download/v0.13.0/docker-machine-Darwin-x86_64";
-        sha256 = "01pfffdrxyb6sl9mcpi3gyd9yahzafz09phn9vs1rsq93k2q7z75";
-      };
-
-      buildCommand = ''
-        mkdir -p $out/bin
-        cp $src $out/bin/docker-machine
-        chmod 755 $out/bin/docker-machine
-      '';
-    })
     (stdenv.mkDerivation {
       name = "docker-17.05-ce-rc1";
       src = fetchurl {
