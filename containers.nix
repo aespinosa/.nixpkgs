@@ -4,10 +4,10 @@ stdenv.mkDerivation {
   name = "container-environment";
   buildInputs = [
     (stdenv.mkDerivation {
-      name = "docker-17.05-ce-rc1";
+      name = "docker-17.09.1-ce";
       src = fetchurl {
-        url = "https://test.docker.com/builds/Darwin/x86_64/docker-17.05.0-ce-rc1.tgz";
-        sha256 = "1z8d9vfjgwhgmdi57r64zkw0i59mgvh4lgg07pb821qljgd78dnl";
+        url = "https://download.docker.com/mac/static/stable/x86_64/docker-17.09.1-ce.tgz";
+        sha256 = "0qx79x9dj7nq0dvz8ms7fqh6fxz1pvsbjpblp776rx180qq6y4ip";
       };
       buildCommand = ''
         mkdir -p $out/bin
