@@ -16,15 +16,15 @@ let
 
   };
   cookstyle = stdenv.mkDerivation {
-    name = "cookstyle-1.3.1";
+    name = "cookstyle-2.1.0";
     buildInputs = [ ruby makeWrapper rake ];
     buildCommand = ''
        GEM_PATH=${rake} \
-       GEM_HOME=$out gem install --no-doc cookstyle --version 1.3.1 \
+       GEM_HOME=$out gem install --no-doc cookstyle --version 2.1.0 \
           --source http://nexus.dev:8081/repository/rubygems/
        rm -rfv $out/bin/*
        makeWrapper ${ruby}/bin/ruby $out/bin/cookstyle \
-          --add-flags $out/gems/cookstyle-1.3.1/bin/cookstyle \
+          --add-flags $out/gems/cookstyle-2.1.0/bin/cookstyle \
           --set GEM_HOME $out
     '';
   };
