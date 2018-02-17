@@ -1,4 +1,5 @@
-{ stdenv, ruby, rake, makeWrapper, libiconv, zlib, glibcLocales }:
+{ stdenv, ruby, rake, makeWrapper, libiconv, zlib, glibcLocales, autoconf,
+libffi }:
 
 let
 
@@ -44,17 +45,15 @@ let
     '';
   };
   chef-dk = stdenv.mkDerivation {
-    name = "chef-dk-2.1.11";
-    buildInputs = [ ruby makeWrapper ];
+    name = "chef-dk-2.4.17";
+    buildInputs = [ ruby makeWrapper autoconf libffi ];
 
     buildCommand = ''
-       GEM_HOME=$out gem install --no-doc molinillo --version 0.5.7 \
-          --source http://nexus.dev:8081/repository/rubygems/
-       GEM_HOME=$out gem install --no-doc chef-dk --version 2.1.11 \
+       GEM_HOME=$out gem install --no-doc chef-dk --version 2.4.17 \
           --source http://nexus.dev:8081/repository/rubygems/
        rm -fv $out/bin/*
        makeWrapper ${ruby}/bin/ruby $out/bin/chef \
-          --add-flags $out/gems/chef-dk-2.1.11/bin/chef \
+          --add-flags $out/gems/chef-dk-2.4.17/bin/chef \
           --set GEM_HOME $out
     '';
   };
