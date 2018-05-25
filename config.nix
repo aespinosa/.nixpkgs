@@ -77,10 +77,10 @@
     containerEnv = callPackage ./containers.nix { };
 
     terraform = stdenv.mkDerivation {
-      name = "terraform-0.7.0";
+      name = "terraform-0.11.5";
       src = fetchurl {
-        url = "https://releases.hashicorp.com/terraform/0.7.0/terraform_0.7.0_darwin_amd64.zip";
-        sha256 = "013byzhgh4bc9kiy52fb77z45v876wvgys0zg0yhsfwbhyrf8827";
+        url = "https://releases.hashicorp.com/terraform/0.11.5/terraform_0.11.5_darwin_amd64.zip";
+        sha256 = "11imz4m3x1swr3fgglalll9wab5kmfvxc5qbri29a90skfpqpxqa";
       };
 
       buildInputs = [ unzip ];
