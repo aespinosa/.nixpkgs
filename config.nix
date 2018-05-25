@@ -21,10 +21,10 @@
     };
 
     macvim = stdenv.mkDerivation {
-      name = "macvim-134";
+      name = "macvim-147";
       src = fetchurl {
-        url = "https://github.com/macvim-dev/macvim/releases/download/snapshot-134/MacVim.dmg";
-        sha256 = "140rchlq2zgz21bwrpnm04ylm4q3p64ikzpdhj1bhqxbnfw482np";
+        url = "https://github.com/macvim-dev/macvim/releases/download/snapshot-147/MacVim.dmg";
+        sha256 = "07szhx043ixym8n15n5xn9g5mjf1r8zi28hgdbpyf07vrfymc0zg";
       };
       buildInputs = [ p7zip ];
       buildCommand = ''
