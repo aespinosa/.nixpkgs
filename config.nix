@@ -125,5 +125,35 @@
         cp -rfv lib $out/lib
       '';
     };
+
+    # installation
+    # nix-env -iA nixpkgs.chefdk -p /opt/chefdk
+    # Install just the "binaries"
+    # nix-env -iA nixpkgs.chefdk.bin 
+    chefdk = stdenv.mkDerivation {
+      name = "chefdk-3.0.36";
+      src = fetchurl {
+        url = "https://packages.chef.io/files/stable/chefdk/3.0.36/mac_os_x/10.13/chefdk-3.0.36-1.dmg";
+        sha256 = "1r68s2ghglzq5rs9zb30bc4bd92x7fjr8vpxyafr8ibm99lisr7v";
+      };
+
+      buildInputs = [ xar cpio p7zip makeWrapper ];
+      outputs = [ "out" "bin" ];
+
+      buildCommand = ''
+        7z x $src
+        xar -xf Chef\ Development\ Kit/chefdk-3.0.36-1.pkg
+        mkdir $out
+        cat chefdk-core.pkg/Payload | gunzip -dc | cpio -i -D $out
+
+        binaries="berks chef chef-apply chef-shell chef-solo chef-vault
+        cookstyle dco delivery foodcritic inspec kitchen knife ohai push-apply
+        pushy-client pushy-service-manager chef-client"
+        mkdir -p $bin/bin
+        for i in $binaries; do
+          ln -sf $out/bin/$i $bin/bin/$i
+        done
+      '';
+    };
   };
 }
