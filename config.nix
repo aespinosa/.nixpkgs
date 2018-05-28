@@ -126,26 +126,52 @@
       '';
     };
 
-    # installation
+    # macOS installation
     # nix-env -iA nixpkgs.chefdk -p /opt/chefdk
     # Install just the "binaries"
     # nix-env -iA nixpkgs.chefdk.bin 
+    #
+    # Linux (NixOS)
+    # nix-env -iA nixpkgs.chefdk -p /opt/chefdk
+    # Create a chroot environment
+    # (pkgs.buildFHSUserEnv {
+    #   name = "chefdk";
+    #   runScript = "bash";
+    #   targetPkgs = pkgs: [ pkgs.chefdk.bin ];
+    # }).env
     chefdk = stdenv.mkDerivation {
       name = "chefdk-3.0.36";
-      src = fetchurl {
+      src = fetchurl (if stdenv.isDarwin then {
         url = "https://packages.chef.io/files/stable/chefdk/3.0.36/mac_os_x/10.13/chefdk-3.0.36-1.dmg";
         sha256 = "1r68s2ghglzq5rs9zb30bc4bd92x7fjr8vpxyafr8ibm99lisr7v";
-      };
+      } else {
+        url = "https://packages.chef.io/files/stable/chefdk/3.0.36/el/7/chefdk-3.0.36-1.el7.x86_64.rpm";
+        sha256 = "0650vg8wy62ng4zk6r8vifnid0vnhnx452j4vqsf2zhfmm3j0pj0";
+      });
 
-      buildInputs = [ xar cpio p7zip makeWrapper ];
+      buildInputs = 
+        [ cpio makeWrapper ] ++ 
+        stdenv.lib.optional stdenv.isDarwin [ xar p7zip ] ++
+        stdenv.lib.optional stdenv.isLinux [ rpm ];
       outputs = [ "out" "bin" ];
 
-      buildCommand = ''
+      phases = [ "unpack" "install" "postInstall"];
+
+      unpack = if stdenv.isDarwin then ''
         7z x $src
         xar -xf Chef\ Development\ Kit/chefdk-3.0.36-1.pkg
+      '' else ''
+        rpm2cpio $src | cpio -i
+      '';
+
+      install = if stdenv.isDarwin then ''
         mkdir $out
         cat chefdk-core.pkg/Payload | gunzip -dc | cpio -i -D $out
+      '' else ''
+        cp -rfp opt/chefdk $out
+      '';
 
+      postInstall = ''
         binaries="berks chef chef-apply chef-shell chef-solo chef-vault
         cookstyle dco delivery foodcritic inspec kitchen knife ohai push-apply
         pushy-client pushy-service-manager chef-client"
