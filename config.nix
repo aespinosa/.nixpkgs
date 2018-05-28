@@ -138,6 +138,10 @@
     #   name = "chefdk";
     #   runScript = "bash";
     #   targetPkgs = pkgs: [ pkgs.chefdk.bin ];
+    #   extraBuildCommands = ''
+    #     mkdir opt
+    #     ln -sf ${pkgs.chefdk} opt/chefdk
+    #   '';
     # }).env
     chefdk = stdenv.mkDerivation {
       name = "chefdk-3.0.36";
