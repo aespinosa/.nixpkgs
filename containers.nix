@@ -17,10 +17,10 @@ stdenv.mkDerivation {
       '';
     })
     (stdenv.mkDerivation {
-      name = "kubernetes-1.7.0";
+      name = "kubernetes-1.10.2";
       src = fetchurl {
-        url = "https://storage.googleapis.com/kubernetes-release/release/v1.7.0/bin/darwin/amd64/kubectl";
-        sha256 = "0fvklj192ihim7hw99yznhfiyaa0ydgh6s2a625hds6v223apb9v";
+        url = "https://storage.googleapis.com/kubernetes-release/release/v1.10.2/bin/darwin/amd64/kubectl";
+        sha256 = "1bgj7qsy5dlkvg01iw7pik72fdcjji1v691nlqvb1ik3lixjhwv3";
       };
 
       buildCommand = ''
@@ -30,10 +30,10 @@ stdenv.mkDerivation {
       '';
     })
     (stdenv.mkDerivation {
-      name = "minikube-0.25.0";
+      name = "minikube-0.27.0";
       src = fetchurl {
         url = "https://storage.googleapis.com/minikube/releases/v0.25.0/minikube-darwin-amd64";
-        sha256 = "1l6frdgy3w85s4a8sassnqc07j7xshsgd3jax82awjq6rp0yr18d";
+        sha256 = "1h8p8xysrpz6i1kg2gar40smp13bp76px1lmrgaylyixl2kgfdfk";
       };
 
       buildCommand = ''
