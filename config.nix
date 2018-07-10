@@ -134,23 +134,24 @@
     # Linux (NixOS)
     # nix-env -iA nixpkgs.chefdk -p /opt/chefdk
     # Create a chroot environment
-    # (pkgs.buildFHSUserEnv {
-    #   name = "chefdk";
-    #   runScript = "bash";
-    #   targetPkgs = pkgs: [ pkgs.chefdk.bin ];
-    #   extraBuildCommands = ''
-    #     mkdir opt
-    #     ln -sf ${pkgs.chefdk} opt/chefdk
-    #   '';
-    # }).env
+    chefdk-shell = (pkgs.buildFHSUserEnv {
+      name = "chefdk";
+      runScript = "bash";
+      targetPkgs = pkgs: [ pkgs.chefdk.bin ];
+      extraBuildCommands = ''
+        mkdir opt
+        ln -sf ${chefdk} opt/chefdk
+      '';
+    }).env;
+
     chefdk = stdenv.mkDerivation {
-      name = "chefdk-3.0.36";
+      name = "chefdk-3.1.0";
       src = fetchurl (if stdenv.isDarwin then {
-        url = "https://packages.chef.io/files/stable/chefdk/3.0.36/mac_os_x/10.13/chefdk-3.0.36-1.dmg";
-        sha256 = "1r68s2ghglzq5rs9zb30bc4bd92x7fjr8vpxyafr8ibm99lisr7v";
+        url = "https://packages.chef.io/files/stable/chefdk/3.1.0/mac_os_x/10.13/chefdk-3.1.0-1.dmg";
+        sha256 = "06k12nm63w5cib0gxcs2v7x7v158ip7dxxb59jl19qddn385r6k6";
       } else {
-        url = "https://packages.chef.io/files/stable/chefdk/3.0.36/el/7/chefdk-3.0.36-1.el7.x86_64.rpm";
-        sha256 = "0650vg8wy62ng4zk6r8vifnid0vnhnx452j4vqsf2zhfmm3j0pj0";
+        url = "https://packages.chef.io/files/stable/chefdk/3.1.0/el/7/chefdk-3.1.0-1.el7.x86_64.rpm";
+        sha256 = "10lsizb68jafjnfccdq08h17p1flkrw9kjpqanh04dkkvpcw55ix";
       });
 
       buildInputs = 
