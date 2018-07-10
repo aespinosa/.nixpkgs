@@ -30,10 +30,10 @@ stdenv.mkDerivation {
       '';
     })
     (stdenv.mkDerivation {
-      name = "minikube-0.27.0";
+      name = "minikube-0.28.0";
       src = fetchurl {
-        url = "https://storage.googleapis.com/minikube/releases/v0.25.0/minikube-darwin-amd64";
-        sha256 = "1h8p8xysrpz6i1kg2gar40smp13bp76px1lmrgaylyixl2kgfdfk";
+        url = "https://storage.googleapis.com/minikube/releases/v0.28.0/minikube-darwin-amd64";
+        sha256 = "0myb4z60ma56xq2kbnixs5rsw8v7ck6zs9wr0w50bgz1qffpdpmz";
       };
 
       buildCommand = ''
