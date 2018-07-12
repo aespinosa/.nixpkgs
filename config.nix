@@ -137,7 +137,7 @@
     chefdk-shell = (pkgs.buildFHSUserEnv {
       name = "chefdk";
       runScript = "bash";
-      targetPkgs = pkgs: [ pkgs.chefdk.bin ];
+      targetPkgs = a: [ a.chefdk.bin a.vagrant ];
       extraBuildCommands = ''
         mkdir opt
         ln -sf ${chefdk} opt/chefdk
@@ -160,7 +160,7 @@
         stdenv.lib.optional stdenv.isLinux [ rpm ];
       outputs = [ "out" "bin" ];
 
-      phases = [ "unpack" "install" "postInstall"];
+      phases = [ "unpack" "install" "postInstall" "fixupPhase" ];
 
       unpack = if stdenv.isDarwin then ''
         7z x $src
@@ -184,6 +184,12 @@
         for i in $binaries; do
           ln -sf $out/bin/$i $bin/bin/$i
         done
+      '';
+
+      fixupPhase = ''
+        set -x
+        patchelf --set-interpreter $(cat $NIX_CC/nix-support/dynamic-linker) $out/embedded/bin/ruby
+        patchelf --set-interpreter $(cat $NIX_CC/nix-support/dynamic-linker) $out/bin/delivery
       '';
     };
   };
