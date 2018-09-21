@@ -4,6 +4,10 @@
   allowUnfree = true;
   allowBroken = true;
   packageOverrides = pkgs: with pkgs; rec {
+    myXmonad = xmonad-with-packages.override {
+      packages = self: [ self.xmonad-contrib ];
+    };
+
     workstationEnv = buildEnv {
       name = "workstation-environment";
       paths = [ screen gitMinimal git-lfs tig ack zsh irssi ];
