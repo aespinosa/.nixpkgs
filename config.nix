@@ -158,4 +158,43 @@
       '';
     }).env;
 
+    vanillaHadoop = stdenv.mkDerivation {
+      name = "hadoop-3.2.0";
+      src = fetchurl {
+        url = "mirror://apache/hadoop/common/hadoop-3.2.0/hadoop-3.2.0.tar.gz";
+        sha256 = "0r4ghkm96s9ds7jjzf5v8kg5zw7rdprbsfjb0m874ik9yyynqsr2";
+      };
+
+      buildCommand = ''
+        mkdir -p $out
+        tar -xvzf $src --strip-components=1 -C $out
+      '';
+    };
+
+    vanillaHive = stdenv.mkDerivation {
+      name = "hive-3.1.1";
+      src = fetchurl {
+        url = "mirror://apache/hive/hive-3.1.1/apache-hive-3.1.1-bin.tar.gz";
+        sha256 = "0m60wfvn6z25nyca3fdwyggkhzjczycslv1w6wwwskxgqdciinvl";
+      };
+
+      buildCommand = ''
+        mkdir -p $out
+        tar -xvzf $src --strip-components=1 -C $out
+      '';
+    };
+
+    vanillaTez = stdenv.mkDerivation {
+      name = "tez-0.9.2";
+      src = fetchurl {
+        url = "mirror://apache/tez/0.9.2/apache-tez-0.9.2-bin.tar.gz";
+        sha256 = "0dbh81h6by9nvim25xy3m3yvcx70asg27g0wk1cd465rz014r7fb";
+      };
+
+      buildCommand = ''
+        mkdir -p $out
+        tar -xvzf $src --strip-components=1 -C $out
+      '';
+    };
+  };
 }
