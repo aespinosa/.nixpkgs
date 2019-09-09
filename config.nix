@@ -4,13 +4,6 @@
   allowUnfree = true;
   allowBroken = true;
   packageOverrides = pkgs: with pkgs; rec {
-    myAnsible =  (pkgs.callPackages <nixpkgs/pkgs/tools/admin/ansible> {
-      python2 = pkgs.python3;
-    }).ansible.overridePythonAttrs(old: {
-      propagatedBuildInputs = old.propagatedBuildInputs ++ [
-        pkgs.python3.pkgs.pip ];
-    });
-
     myXmonad = xmonad-with-packages.override {
       packages = self: [ self.xmonad-contrib ];
     };
