@@ -7,6 +7,22 @@
     myXmonad = xmonad-with-packages.override {
       packages = self: [ self.xmonad-contrib ];
     };
+    mavenjdk11 = maven.override {
+      jdk = jdk11;
+    };
+    myVagrant = vagrant.override {
+      withLibvirt = true;
+    };
+
+    myIntellij = stdenv.mkDerivation {
+      name = jetbrains.idea-community.name;
+      phases = [ "installPhase" ];
+      buildInputs = [ makeWrapper ];
+      installPhase = ''
+        mkdir -p $out/bin
+        makeWrapper "${jetbrains.idea-community}/$name/bin/idea.sh" "$out/bin/idea-community" 
+      '';
+    };
 
     workstationEnv = buildEnv {
       name = "workstation-environment";
